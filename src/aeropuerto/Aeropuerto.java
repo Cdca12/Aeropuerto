@@ -20,8 +20,11 @@ public class Aeropuerto extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
+<<<<<<< HEAD
         
         
+=======
+>>>>>>> 1a5512a821b6257331d0294a1ef267583d6a4de7
 
     }
 }
