@@ -25,6 +25,7 @@ public class Aeropuerto extends JFrame {
         rutaBackground = "./src/assets/hangar6.jpg";
 //        numeroAviones = Rutinas.nextInt(3, 5);
         numeroAviones = 1; // TEST:
+        pista = new Pista();
         initComponents();
     }
 
