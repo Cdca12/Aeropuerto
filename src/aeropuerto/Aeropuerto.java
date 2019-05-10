@@ -15,20 +15,24 @@ public class Aeropuerto extends JFrame {
     private JPanel glassPaneAviones;
     private JLabel lbBackground;
     private final String rutaBackground;
+    private Avion[] aviones;
+    private int numeroAviones;
+    private Pista pista;
     
     
     
     public Aeropuerto() {
-        rutaBackground = "./src/assets/aeropuerto.jpg";
+        rutaBackground = "./src/assets/hangar6.jpg";
+//        numeroAviones = Rutinas.nextInt(3, 5);
+        numeroAviones = 1; // TEST:
         initComponents();
-        setVisible(true);
     }
 
     public void initComponents() {
         setTitle("Aeropuerto");
-        setSize(650, 550);
+        setSize(850, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-//        setResizable(false);
+        setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
         
@@ -41,8 +45,23 @@ public class Aeropuerto extends JFrame {
         lbBackground = new JLabel(Rutinas.AjustarImagen(rutaBackground, getContentPane().getWidth(), getContentPane().getHeight()));
         add(lbBackground);
         
+        generarAviones();
         
         
+        
+        
+    }
+    
+    private void generarAviones() {
+        aviones = new Avion[numeroAviones];
+        for (int i = 0; i < aviones.length; i++) {
+            aviones[i] = new Avion(pista);
+            glassPaneAviones.add(aviones[i].imagenAvion);
+        }
+        // Inicialización de hilos
+        for (int i = 0; i < aviones.length; i++) {
+            aviones[i].start();
+        }
         
         
     }

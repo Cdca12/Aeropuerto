@@ -8,4 +8,5 @@ public class Pista {
 
     public boolean estaDisponible;
     public Semaforo semaforo;
+
 }

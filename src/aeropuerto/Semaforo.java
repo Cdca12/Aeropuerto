@@ -1,4 +1,4 @@
-package topicos;
+package aeropuerto;
 
 public class Semaforo {
 
