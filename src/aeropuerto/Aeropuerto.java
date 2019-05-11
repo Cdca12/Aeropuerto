@@ -1,6 +1,7 @@
 package aeropuerto;
 
 import java.awt.Color;
+import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,12 +20,10 @@ public class Aeropuerto extends JFrame {
     private int numeroAviones;
     private Pista pista;
     
-    
-    
     public Aeropuerto() {
         rutaBackground = "./src/assets/hangar6.jpg";
 //        numeroAviones = Rutinas.nextInt(3, 5);
-        numeroAviones = 1; // TEST:
+        numeroAviones = 3; // TEST:
         pista = new Pista();
         initComponents();
     }
@@ -55,9 +54,19 @@ public class Aeropuerto extends JFrame {
     
     private void generarAviones() {
         aviones = new Avion[numeroAviones];
+        Point posicionVuelo = new Point(10, 5);
+        Point posicionEstacionado = new Point(620, 220);
+        
         for (int i = 0; i < aviones.length; i++) {
-            aviones[i] = new Avion(pista);
+            System.out.println("Avion " + (i+1) + "\nx: " + posicionEstacionado.x
+            + "\ny: " + posicionEstacionado.y
+            + "\n-----------------------");
+            aviones[i] = new Avion(pista, posicionVuelo, posicionEstacionado);
             glassPaneAviones.add(aviones[i].imagenAvion);
+            posicionVuelo.y += 60;
+            posicionEstacionado = new Point(posicionEstacionado.x - 30, posicionEstacionado.y - 30);
+//            System.out.println("x: " + posicionEstacionado.x
+//            + "\ny: " + posicionEstacionado.y);
         }
         // Inicialización de hilos
         for (int i = 0; i < aviones.length; i++) {
