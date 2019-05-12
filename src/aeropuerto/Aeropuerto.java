@@ -54,26 +54,19 @@ public class Aeropuerto extends JFrame {
     
     private void generarAviones() {
         aviones = new Avion[numeroAviones];
-        Point posicionVuelo = new Point(10, 5);
-        Point posicionEstacionado = new Point(620, 220);
+        Point posicionVuelo = new Point(10, 5),
+        posicionEstacionado = new Point(620, 220);
         
         for (int i = 0; i < aviones.length; i++) {
-            System.out.println("Avion " + (i+1) + "\nx: " + posicionEstacionado.x
-            + "\ny: " + posicionEstacionado.y
-            + "\n-----------------------");
             aviones[i] = new Avion(pista, posicionVuelo, posicionEstacionado);
             glassPaneAviones.add(aviones[i].imagenAvion);
             posicionVuelo.y += 60;
             posicionEstacionado = new Point(posicionEstacionado.x - 30, posicionEstacionado.y - 30);
-//            System.out.println("x: " + posicionEstacionado.x
-//            + "\ny: " + posicionEstacionado.y);
         }
         // Inicialización de hilos
         for (int i = 0; i < aviones.length; i++) {
             aviones[i].start();
         }
-        
-        
     }
     
     
