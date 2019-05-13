@@ -1,12 +1,8 @@
 package aeropuerto;
 
-import java.awt.Color;
-import java.awt.Point;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import utils.Rutinas;
 
@@ -39,7 +35,7 @@ public class Avion extends Thread {
         rutaImagen = "./src/assets/ship.png";
         imagenAvion = new JLabel(Rutinas.AjustarImagen(rutaImagen, 100, 80));
         imagenAvion.setBounds(posicionVueloX, posicionVueloY, 100, 80);
-        velocidad = 5; // TEST:
+        velocidad = 5; //
         velocidadAterrizaje = 3;
     }
 

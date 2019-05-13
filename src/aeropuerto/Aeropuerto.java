@@ -1,12 +1,15 @@
 package aeropuerto;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Point;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import utils.Rutinas;
 
 /**
@@ -26,8 +29,7 @@ public class Aeropuerto extends JFrame {
 
     public Aeropuerto() {
         rutaBackground = "./src/assets/hangar6.jpg";
-//        numeroAviones = Rutinas.nextInt(3, 6);
-        numeroAviones = 5; // TEST:
+        numeroAviones = Rutinas.nextInt(3, 5);
         contadorAterrizajesSinExito = 0;
         turnoActual = 1;
         pista = new Pista();
@@ -91,9 +93,37 @@ public class Aeropuerto extends JFrame {
     }
 
     private void imprimirResultados() {
-        System.out.println("Aterrizajes fallidos\n");
+        JDialog modalResultados = new JDialog();
+//        modalResultados.setLayout(null);
+        modalResultados.setTitle("Resulados");
+        modalResultados.setSize(400, 400);
+        modalResultados.setLocationRelativeTo(null);
+        modalResultados.setVisible(true);
+        
+        // Labels
+        JPanel glassPaneLabel = new JPanel();
+        glassPaneLabel = (JPanel) modalResultados.getGlassPane();
+        glassPaneLabel.setLayout(null);
+        glassPaneLabel.setVisible(true);
+        
+        JLabel lbModalBackground = new JLabel(Rutinas.AjustarImagen("./src/assets/resultados.jpg", modalResultados.getWidth(), modalResultados.getHeight()));
+        modalResultados.add(lbModalBackground);
+
+        JLabel lbResultados = new JLabel("Aterrizajes Fallidos");
+        lbResultados.setBounds(80, 50, 300, 30);
+        lbResultados.setForeground(Color.WHITE);
+        lbResultados.setFont(new Font("Arial", Font.BOLD, 25));
+        glassPaneLabel.add(lbResultados);
+
+        int posicionY = 150;
         for (int i = 0; i < aviones.length; i++) {
-            System.out.println("Avion " + (i + 1) + ": " + aviones[i].obtenerAterrizajesFallidos());
+            JLabel lbAvion = new JLabel("Avión " + (i + 1) + ":    " + aviones[i].obtenerAterrizajesFallidos());
+            lbAvion.setBounds(140, posicionY + (i * 25), 200, 30);
+            lbAvion.setForeground(Color.WHITE);
+            lbAvion.setFont(new Font("Arial", Font.PLAIN, 16));
+            glassPaneLabel.add(lbAvion);
         }
+
+        SwingUtilities.updateComponentTreeUI(glassPaneLabel);
     }
 }
