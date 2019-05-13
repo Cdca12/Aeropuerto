@@ -26,8 +26,8 @@ public class Aeropuerto extends JFrame {
 
     public Aeropuerto() {
         rutaBackground = "./src/assets/hangar6.jpg";
-        numeroAviones = Rutinas.nextInt(3, 5);
-//        numeroAviones = 3; // TEST:
+//        numeroAviones = Rutinas.nextInt(3, 6);
+        numeroAviones = 5; // TEST:
         contadorAterrizajesSinExito = 0;
         turnoActual = 1;
         pista = new Pista();
@@ -36,7 +36,6 @@ public class Aeropuerto extends JFrame {
 
     public void initComponents() {
         setTitle("Aeropuerto");
-//        setSize(850, 500);
         setSize(1200, 700);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
@@ -54,9 +53,9 @@ public class Aeropuerto extends JFrame {
 
         generarAviones();
         iniciarAviones();
-        
-        // Resultados
-        boolean banderaHilosVivos = false;
+
+        // Esperar a que los hilos terminen su ejecución para mostrar resultados
+        boolean banderaHilosVivos = true;
         while (banderaHilosVivos) {
             banderaHilosVivos = false;
             for (int i = 0; i < aviones.length; i++) {
@@ -66,7 +65,10 @@ public class Aeropuerto extends JFrame {
                 }
             }
         }
-        System.out.println("Bueno");
+
+        // Mostrar resultados
+        imprimirResultados();
+
     }
 
     private void generarAviones() {
@@ -78,7 +80,6 @@ public class Aeropuerto extends JFrame {
             posicionVueloY += 65;
             posicionEstacionadoX -= 30;
             posicionEstacionadoY -= 45;
-            
         }
     }
 
@@ -89,4 +90,10 @@ public class Aeropuerto extends JFrame {
         }
     }
 
+    private void imprimirResultados() {
+        System.out.println("Aterrizajes fallidos\n");
+        for (int i = 0; i < aviones.length; i++) {
+            System.out.println("Avion " + (i + 1) + ": " + aviones[i].obtenerAterrizajesFallidos());
+        }
+    }
 }

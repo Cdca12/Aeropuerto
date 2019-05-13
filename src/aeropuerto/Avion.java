@@ -43,6 +43,10 @@ public class Avion extends Thread {
         velocidadAterrizaje = 3;
     }
 
+    public int obtenerAterrizajesFallidos() {
+        return contadorAterrizajesFallidos;
+    }
+
     @Override
     public void run() {
         primeraVuelta();
@@ -114,8 +118,6 @@ public class Avion extends Thread {
             SwingUtilities.updateComponentTreeUI(imagenAvion);
             esperar(10);
         }
-        System.out.println("Salio regresa");
-
     }
 
     private void estacionar() {
