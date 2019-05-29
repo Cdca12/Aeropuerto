@@ -35,8 +35,8 @@ public class Avion extends Thread {
         rutaImagen = "./src/assets/ship.png";
         imagenAvion = new JLabel(Rutinas.AjustarImagen(rutaImagen, 100, 80));
         imagenAvion.setBounds(posicionVueloX, posicionVueloY, 100, 80);
-        velocidad = 5; //
-        velocidadAterrizaje = 3;
+        velocidad = 4; //
+        velocidadAterrizaje = 2;
     }
 
     public int obtenerAterrizajesFallidos() {
